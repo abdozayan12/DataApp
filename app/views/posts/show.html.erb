@@ -1,1 +1,13 @@
-<p>this is for showing 1 post id</p>
+<div class="container border-card p-4">
+    <div class="flex-col items-center">
+        <h1><%= @post.title %></h1>
+        <span style="font-size: large; font-weight:300;">by <%= @user.name %></span>
+        <span style="font-size: smaller; font-weight:100; margin-top: 10px">Comments : <%= @post.comment_counter %>, Likes : <%= @post.like_counter %></span>
+    </div>
+
+    <div class="post-text">
+        <%= @post.text %>
+    </div>
+
+    <%= render partial: "comment_card", locals: {comments: @post.comments} %>
+</div>
