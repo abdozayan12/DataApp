@@ -6,7 +6,7 @@ RSpec.describe 'Posts', type: :request do
       get '/users/1/posts/1'
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
-      expect(response.body).to include("Placeholder text for show view")
+      expect(response.body).to include('Placeholder text for show view')
     end
   end
 
@@ -15,7 +15,7 @@ RSpec.describe 'Posts', type: :request do
       get '/users/1/posts'
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:index)
-      expect(response.body).to include("Placeholder text for index view")
+      expect(response.body).to include('Placeholder text for index view')
     end
   end
 end

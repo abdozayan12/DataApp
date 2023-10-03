@@ -6,12 +6,12 @@ RSpec.describe 'Users', type: :request do
       get '/users/index'
       expect(response).to have_http_status(:success)
     end
-    
+
     it 'renders the index template' do
       get '/users/index'
       expect(response).to render_template(:index)
     end
-    
+
     it 'renders the correct placeholder text' do
       get '/users/index'
       expect(response.body).to include('Welcome to the Users Index!')
