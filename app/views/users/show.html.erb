@@ -1,9 +1,18 @@
 <div class="container">
     <%= render partial: "user", locals: { user: @user } %>
+
+  <div class="gap-1" style="display:flex; justify-content: start; width:100%;">
     <div class="user-card gap-0 flex-col items-start border-card">
         <span class="card-title">Bio</span>
         <span class="user-bio"><%= @user.bio %></span>
     </div>
+    <a
+      href="<%= user_new_posts_path(user_id: @user.id) %>" 
+      class="border-card user-card justify-center card-title" 
+      style="background-color:black; color:white;">
+      Add New Post
+    </a>
+  </div>
 
     <% if @recent_posts.any? %>
         <% @recent_posts.each do |recent_post| %>
