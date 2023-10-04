@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: gemstone_blog_dev
+  database: DataApp
 
 test:
   <<: *default
-  database: gemstone_blog_test
+  database: DataApp
 
 production:
   <<: *default
-  database: gemstone_blog_prod
+  database: DataApp
