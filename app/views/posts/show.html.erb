@@ -10,10 +10,10 @@
     </div>
 
     <div class="comment-container">
-        <%= form_with model: @comment, url: create_new_comment_path(user_id: @user.id, id: @post.id) ,class: "flex items-start gap-1" do |form| %>
-            <%= form.text_area :text, size: "70x5" %>
-            <%= form.submit "Add new comment" %>
-        <% end %>
+        <%= form_with model: @comment, url: user_post_comments_path(@user, @post), class: "flex items-start gap-1" do |form| %>
+  <%= form.text_area :text, size: "70x5" %>
+  <%= form.submit "Add new comment" %>
+<% end %>
     </div>
 
    <div class="comment-container">
