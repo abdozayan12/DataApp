@@ -16,11 +16,11 @@
         <% end %>
     </div>
 
-    <div class="comment-container">
-        <%= form_with model: @like, url: create_new_like_path(user_id: @user.id, id: @post.id) ,class: "flex items-start gap-1" do |form| %>
-            <%= form.submit "Add likes comment", class: "w-full" %>
-        <% end %>
-    </div>
+   <div class="comment-container">
+  <%= form_with model: @like, url: user_post_likes_path(@user, @post), method: :post, class: "flex items-start gap-1" do |form| %>
+    <%= form.submit "Like", class: "w-full" %>
+  <% end %>
+</div>
     
     <%= render partial: "comment_card", locals: {comments: @post.comments} %>
 </div>
