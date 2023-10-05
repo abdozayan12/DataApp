@@ -1,0 +1,11 @@
+<div class="container">
+  <%= form_with model: @post, url: create_user_posts_path ,class: "user-card border-card flex-col items-start gap-1" do |form| %>
+      <%= form.label :title, "Title of the post :" %>
+      <%= form.text_field :title %>
+      <%= form.label :text, "Post text :" %>
+      <%= form.text_area :text, size: "70x5" %>
+      <div class="flex justify-center w-full">
+        <%= form.submit "Add new post" %>
+      </div>
+  <% end %>
+</div>

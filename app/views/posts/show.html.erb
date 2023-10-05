@@ -9,5 +9,18 @@
         <%= @post.text %>
     </div>
 
+    <div class="comment-container">
+        <%= form_with model: @comment, url: user_post_comments_path(@user, @post), class: "flex items-start gap-1" do |form| %>
+  <%= form.text_area :text, size: "70x5" %>
+  <%= form.submit "Add new comment" %>
+<% end %>
+    </div>
+
+   <div class="comment-container">
+  <%= form_with model: @like, url: user_post_likes_path(@user, @post), method: :post, class: "flex items-start gap-1" do |form| %>
+    <%= form.submit "Like", class: "w-full" %>
+  <% end %>
+</div>
+    
     <%= render partial: "comment_card", locals: {comments: @post.comments} %>
 </div>
