@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: DataApp
+  database: DataApp-dev
 
 test:
   <<: *default
-  database: DataApp
+  database: DataApp-test
 
 production:
   <<: *default
-  database: DataApp
+  database: DataApp-prod

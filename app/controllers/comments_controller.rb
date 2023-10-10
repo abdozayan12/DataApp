@@ -2,15 +2,15 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
-    @comment.user = current_user
+    @comment.user_id = current_user.id
 
     if @comment.save
       flash[:success] = 'Comment created successfully!'
+      redirect_to post_path(@post)
     else
-      flash[:alert] = 'Something went wrong'
+      flash[:error] = 'Failed to save comment.'
+      redirect_to post_path(@post)
     end
-
-    redirect_to user_post_path(current_user, @post)
   end
 
   private
