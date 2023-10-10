@@ -2,9 +2,9 @@ require 'rails_helper'
 RSpec.describe 'users#index', type: :feature do
   before do
     @users = [
-      User.create(name: 'Mary', photo: 'mary.jpg', bio: 'Software Developer', posts_counter:0),
+      User.create(name: 'Mary', photo: 'mary.jpg', bio: 'Software Developer', posts_counter: 0),
       User.create(name: 'David', photo: 'david.jpg', bio: 'Software Developer', posts_counter: 0),
-      User.create(name: 'Justin', photo: 'justin.jpg', bio: 'Software Developer', posts_counter: 0),
+      User.create(name: 'Justin', photo: 'justin.jpg', bio: 'Software Developer', posts_counter: 0)
     ]
     visit users_path
   end
