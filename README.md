@@ -107,6 +107,13 @@ To test the project, execute the following command:
 - Twitter: [@Abd elhakim Zayan](https://twitter.com/zayan_abdo)
 - LinkedIn: [@Abd elhakim Zayan](https://www.linkedin.com/in/abdozayan/)
 
+
+👤 Meryem Sanem Küçükbayram
+
+- GitHub: [Meryem Sanem Küçükbayram](https://github.com/meryemsanem)
+- LinkedIn: [Meryem Sanem Küçükbayram](https://www.linkedin.com/in/meryemsanemkucukbayram/)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
