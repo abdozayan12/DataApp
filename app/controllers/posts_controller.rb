@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.posts
+    @users = [User.includes(:posts).find(params[:user_id])]
+    @posts = @users[0].posts.includes(:comments)
   end
 
   def show
-    @user = User.find(params[:user_id])
+    @posts = [Post.find(params[:id])]
     @comment = Comment.new
-    @post = Post.find(params[:id])
+    @like = Like.new
   end
 
   def new
@@ -16,12 +16,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-
     if @post.save
       redirect_to user_posts_path(current_user)
-
     else
-      flash[:alert] = 'Something went wrong'
       render 'new'
     end
   end

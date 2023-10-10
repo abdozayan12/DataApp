@@ -1,41 +1,32 @@
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
-  describe 'GET /users/index' do
-    it 'returns http success' do
-      get '/users/index'
-      expect(response).to have_http_status(:success)
-    end
+RSpec.describe User, type: :model do
+  subject { User.new(name: 'Tom') }
+  let(:user) { subject }
 
-    it 'renders the index template' do
-      get '/users/index'
-      expect(response).to render_template(:index)
-    end
-
-    it 'renders the correct placeholder text' do
-      get '/users/index'
-      expect(response.body).to include('Welcome to the Users Index!')
-    end
+  it 'Name must not be blank.' do
+    subject.name = nil
+    expect(subject).to_not be_valid
   end
 
-  describe 'GET /users/:id' do
+  it 'PostsCounter must be an integer greater than or equal to zero.' do
+    subject.postsCounter = -1
+    expect(subject).to_not be_valid
+  end
+
+  it 'PostsCounter must be an integer greater than or equal to zero.' do
+    subject.posts_counter = 0
+    expect(subject).to be_valid
+  end
+
+  describe 'Recent Posts' do
     before do
-      @user = User.create(name: 'John Doe', email: 'john@example.com')
-      get "/users/#{@user.id}"
+      5.times do
+        Post.create(author_id: subject.id, title: 'Hello', text: 'Test Post')
+      end
     end
-
-    it 'returns http success' do
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'renders the show template' do
-      expect(response).to render_template(:show)
-    end
-
-    it 'renders the correct placeholder text' do
-      expect(response.body).to include('User Information:')
-      expect(response.body).to include("Name: #{@user.name}")
-      expect(response.body).to include("Email: #{@user.email}")
+    it 'should display last 3 posts' do
+      expect(subject.recent_posts).to eq subject.posts.order(created_at: :desc).limit(3)
     end
   end
 end

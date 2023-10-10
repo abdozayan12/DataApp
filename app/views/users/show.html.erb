@@ -1,32 +1,29 @@
-<div class="container">
-    <%= render partial: "user", locals: { user: @user } %>
+<div>
+<%= render partial: "render", users: @users%>
+<div class="bio-container">
+<h2>Bio</h2>
+<p><%= @users[0].bio %></p>
+</div>
 
-  <div class="gap-1" style="display:flex; justify-content: start; width:100%;">
-    <div class="user-card gap-0 flex-col items-start border-card">
-        <span class="card-title">Bio</span>
-        <span class="user-bio"><%= @user.bio %></span>
+<% @posts.each do |post| %>
+<ul class="main-container">
+    <li class="blog">
+    <a href="<%= user_post_path(post.author_id,post.id) %>" class="blog">
+    <h2><%= post.title %></h2>
+    <p><%= post.text %><p>
+    <div class="features">
+    <span>Comments: <%= post.comments.count %></span>
+    <span>Likes: <%= post.likes.count %></span>
     </div>
-    <a
-  href="<%= user_posts_path(user_id: @user.id) %>" 
-  class="border-card user-card justify-center card-title" 
-  style="background-color:black; color:white;">
-  Add New Post
-</a>
-  </div>
+    </a>
+    </li>
+    </ul>
+<% end %>
 
-    <% if @recent_posts.any? %>
-        <% @recent_posts.each do |recent_post| %>
-            <%= render partial: "posts/post_card", locals: { post: recent_post, comments: nil } %>
-        <% end %>
 
-        <a 
-            href="<%= user_posts_path(user_id: @user.id) %>" 
-            class="user-card border-card" 
-            style="width: fit-content;"
-        > 
-            Load all post  
-        </a>
-    <% else %>
-        <p>No posts found.</p>
-    <% end %>
+<% unless @users[0].posts.length <=2 %>
+<button class="see-all">
+<a href="<%= user_posts_path(@users[0])%>">See all posts</a>
+</button>
+<%end %>
 </div>

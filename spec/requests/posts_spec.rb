@@ -1,21 +1,50 @@
 require 'rails_helper'
 
-RSpec.describe 'Posts', type: :request do
-  describe 'GET /users/:user_id/posts/:id' do
-    it 'returns http success, renders the show template, and includes correct placeholder text' do
-      get '/users/1/posts/1'
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:show)
-      expect(response.body).to include('Placeholder text for show view')
-    end
+RSpec.describe Post, type: :model do
+  let(:user) { create(:user) }
+  subject do
+    Post.new(title: 'Title', text: 'Sample', commentsCounter: 2, likesCounter: 1, author: user)
+  end
+  before { subject.save }
+  it ' Title must not be blank.' do
+    subject.title = nil
+    expect(subject).to_not be_valid
   end
 
-  describe 'GET /users/:user_id/posts' do
-    it 'returns http success, renders the index template, and includes correct placeholder text' do
-      get '/users/1/posts'
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:index)
-      expect(response.body).to include('Placeholder text for index view')
-    end
+  it 'Title must not exceed 250 characters.' do
+    subject.title = 'a' * 251
+    expect(subject).to_not be_valid
+  end
+  it 'commentsCounter must be integer and greater than or equal to 0.' do
+    subject.commentsCounter = 'aa'
+    expect(subject).to_not be_valid
+    subject.commentsCounter = -1
+    expect(subject).to_not be_valid
+  end
+  it 'likesCounter must be integer and greater than or equal to 0.' do
+    subject.commentsCounter = 'aa'
+    expect(subject).to_not be_valid
+    subject.commentsCounter = -1
+    expect(subject).to_not be_valid
+  end
+
+  it "increments the user's posts_counter by 1" do
+    user = create(:user)
+    post = build(:post, author: user)
+
+    expect { post.save }.to change { user.reload.posts_counter }.by(1)
+  end
+
+  it 'should display last 5 recent comments' do
+    post = create(:post, author: user)
+
+    create(:comment, post:, created_at: 1.hour.ago)
+    create(:comment, post:, created_at: 1.hour.ago)
+    create(:comment, post:, created_at: 1.hour.ago)
+    create(:comment, post:, created_at: 1.hour.ago)
+    create(:comment, post:, created_at: 1.hour.ago)
+    recent_comments = post.recent_comments
+
+    expect(recent_comments.count).to eq(5)
   end
 end

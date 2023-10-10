@@ -1,26 +1,27 @@
-<div class="container border-card p-4">
-    <div class="flex-col items-center">
-        <h1><%= @post.title %></h1>
-        <span style="font-size: large; font-weight:300;">by <%= @user.name %></span>
-        <span style="font-size: smaller; font-weight:100; margin-top: 10px">Comments : <%= @post.comment_counter %>, Likes : <%= @post.like_counter %></span>
-    </div>
+<% @posts.each do |post| %>
+<ul class="main-container">
+ <li class="blog">
+      <a href="<%= user_post_path(post.author_id, post.id) %>" class="blog">
+        <h2><%= post.title %> by <%= User.find(post.author_id).name %></h2>
+        <p><%= post.text %></p>
+        <div class="features-lastpage">
+        <span>Comments: <%= post.comments.length %></span>
+        <span>Likes: <%= post.likes.length %></span>
+        </div>
+      </a>
+    </li>
+    </ul>
 
-    <div class="post-text">
-        <%= @post.text %>
-    </div>
-
-    <div class="comment-container">
-        <%= form_with model: @comment, url: user_post_comments_path(@user, @post), class: "flex items-start gap-1" do |form| %>
-  <%= form.text_area :text, size: "70x5" %>
-  <%= form.submit "Add new comment" %>
-<% end %>
-    </div>
-
-   <div class="comment-container">
-  <%= form_with model: @like, url: user_post_likes_path(@user, @post), method: :post, class: "flex items-start gap-1" do |form| %>
-    <%= form.submit "Like", class: "w-full" %>
+    <ul class="comments">
+      <% unless post.comments.any? %>
+        <h2>There are no comments to show.</h2>
+      <% end %>
+      <% post.comments.each do |comment| %>
+        <li >
+          <span><%= User.find(comment.user_id).name %>:</span>
+          <span><%= comment.text %></span>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-</div>
-    
-    <%= render partial: "comment_card", locals: {comments: @post.comments} %>
-</div>
+  
