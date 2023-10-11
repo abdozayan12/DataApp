@@ -90,3 +90,42 @@
 .comment {
   font-size: 16px;
 }
+
+/* sign up */
+.regist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 100px;
+}
+
+.regist-field {
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  gap: 10px;
+}
+
+.registpass-field {
+  display: grid;
+  grid-template-columns: 0.39fr 1fr 0fr 2.15fr;
+  gap: 10px;
+}
+
+/* login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 100px;
+}
+
+.login-field {
+  display: grid;
+  grid-template-columns: 1fr 0fr 4fr;
+  gap: 10px;
+}
+
+.submit-button input {
+  text-align: center;
+  width: 100%;
+}
