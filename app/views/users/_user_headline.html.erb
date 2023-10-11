@@ -1,0 +1,12 @@
+<div class=" w-full flex items-center " style="justify-content: space-between" >
+ <div class="flex flex-col">
+    <h1>
+      Hi <%= current_user.name %>
+    </h1>
+    <% unless current_user.confirmed? %>
+      <div style="color:red;">Email not verified</div>
+    <% end %>
+ </div>
+  <%= link_to 'Sign Out', sign_out_user_path, class: "border-card user-card justify-center card-title", 
+      style: "background-color:black; color:white; width: 30%;" %>
+</div>
