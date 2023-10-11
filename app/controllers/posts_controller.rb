@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
   def index
     @users = [User.includes(:posts).find(params[:user_id])]

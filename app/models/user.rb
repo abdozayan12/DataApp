@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -10,7 +8,7 @@ class User < ApplicationRecord
   has_many :likes, foreign_key: 'author_id'
 
   validates :name, presence: true
-  validates :posts_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :posts_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
 
   def update_posts_counter
     update(posts_counter: posts.count)

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddLikesCounterToPosts < ActiveRecord::Migration[7.0]
   def change
     remove_column :posts, :likesCounter if column_exists?(:posts, :likesCounter)
