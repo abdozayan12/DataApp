@@ -15,6 +15,15 @@ body {
   padding: 3%;
 }
 
+.z {
+  /* border: 2px solid black; */
+    list-style: none;
+    /* height: 150px; */
+    margin: 20px;
+    width: 85%;
+    padding: 4%;
+}
+
 .render-container {
   display: flex;
   margin: 20px;
@@ -71,6 +80,8 @@ body {
   list-style: none;
   height: 150px;
   margin: 20px;
+  width: 85%;
+  padding: 4%;
 }
 
 .blog {
@@ -97,6 +108,7 @@ body {
   list-style: none;
   padding: 4%;
   margin: 20px;
+  width: 75%;
 }
 
 .comment {
