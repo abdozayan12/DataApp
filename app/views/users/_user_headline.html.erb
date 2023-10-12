@@ -1,12 +1,20 @@
-<div class=" w-full flex items-center " style="justify-content: space-between" >
- <div class="flex flex-col">
-    <h1>
-      Hi <%= current_user.name %>
-    </h1>
-    <% unless current_user.confirmed? %>
-      <div style="color:red;">Email not verified</div>
-    <% end %>
- </div>
-  <%= link_to 'Sign Out', sign_out_user_path, class: "border-card user-card justify-center card-title", 
-      style: "background-color:black; color:white; width: 30%;" %>
+<div class="container w-full border-card p-4" style="margin-bottom:25px">
+  <div class="w-full flex items-center " style="justify-content: space-between" >
+  <div class="flex flex-col">
+      <h1>
+        Hi <%= current_user.name %>
+      </h1>
+
+      <% unless current_user.confirmed? %>
+        <div class="border-card user-card justify-center " style="color:red;">Email not verified</div>
+      <% end %>
+  </div>
+  <div class="flex flex-col">
+    <div class="border-card user-card justify-center " style="text-transform: capitalize; margin-bottom:20px">
+        Role: <%= current_user.role  %>
+      </div>
+    <%= link_to 'Sign Out', sign_out_user_path, class: "border-card user-card justify-center card-title", 
+        style: "background-color:black; color:white; width: 100%;" %>
+  </div>
+</div>
 </div>
